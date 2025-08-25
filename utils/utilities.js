@@ -26,11 +26,10 @@ function setInnerText(value) {
   availableBalance.innerText = value;
 }
 
-// function for Toggling, use common class in each section
-// function showForm(id) {
-//   const forms = document.getElementsByClassName("form");
-//   for (const form of forms) {
-//     form.style.display = "none";
-//   }
-//   document.getElementById(id).style.display = "block";
-// }
+function handleToggle(id) {
+  const forms = document.getElementsByClassName("form");
+  for (const form of forms) {
+    form.style.display = "none";
+  }
+  document.getElementById(id).style.display = "block";
+}

@@ -16,9 +16,7 @@ document
     const addPin = inputValueNumber("add-pin");
 
     //now get the available id
-    const availableBalance = parseInt(
-      document.getElementById("available-balance").innerText
-    );
+    const availableBalance = getInnerText("available-balance");
     // validate the bank account number
     if (accountNumber.length < 11) {
       alert("Please provide valid account number");
@@ -30,18 +28,15 @@ document
       return;
     }
     const newBalance = availableBalance + addAmount;
-    document.getElementById("available-balance").innerText = newBalance;
+    setInnerText(newBalance);
   });
 
 //   cashout section
 document.getElementById("cash-out-btn").addEventListener("click", function (e) {
   e.preventDefault();
   const amount = inputValueNumber("cash-out-amount");
-  const availableBalance = parseFloat(
-    document.getElementById("available-balance").innerText
-  );
+  const availableBalance = getInnerText("available-balance");
   const totalNewAvailableBalance = availableBalance - amount;
-  console.log(totalNewAvailableBalance);
-  document.getElementById("available-balance").innerText =
-    totalNewAvailableBalance;
+
+  setInnerText(totalNewAvailableBalance);
 });
