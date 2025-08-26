@@ -1,5 +1,6 @@
 // add money section
 const validPin = 1234;
+let transactionData = [];
 document
   .getElementById("add-money-btn")
   .addEventListener("click", function (e) {
@@ -13,6 +14,10 @@ document
     // const addPin = parseFloat(document.getElementById("add-pin").value);
 
     const addAmount = inputValueNumber("add-amount");
+    if (addAmount <= 0) {
+      alert("amount can not be zero");
+      return;
+    }
     const addPin = inputValueNumber("add-pin");
 
     //now get the available id
@@ -29,6 +34,12 @@ document
     }
     const newBalance = availableBalance + addAmount;
     setInnerText(newBalance);
+
+    const data = {
+      name: "Add Money",
+      date: new Date().toLocaleTimeString(),
+    };
+    transactionData.push(data);
   });
 
 //   cashout section
@@ -36,7 +47,17 @@ document.getElementById("cash-out-btn").addEventListener("click", function (e) {
   e.preventDefault();
   const amount = inputValueNumber("cash-out-amount");
   const availableBalance = getInnerText("available-balance");
+  if (amount <= 0 || amount > availableBalance) {
+    alert("give a valid number");
+    return;
+  }
   const totalNewAvailableBalance = availableBalance - amount;
 
   setInnerText(totalNewAvailableBalance);
+  const data = {
+    name: "Cash Out",
+    date: new Date().toLocaleTimeString(),
+  };
+  transactionData.push(data);
+  console.log(transactionData);
 });
